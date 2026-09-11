@@ -176,6 +176,22 @@ function BooksAdmin() {
   const { data: categories = [] } = useQuery(categoriesQuery);
   const [form, setForm] = useState({ ...EMPTY_BOOK });
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
+
+  async function uploadCover(file: File) {
+    if (!file.type.startsWith("image/")) { toast.error("Please choose an image file"); return; }
+    if (file.size > 10 * 1024 * 1024) { toast.error("Image must be under 10 MB"); return; }
+    setUploading(true);
+    const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
+    const path = `${crypto.randomUUID()}.${ext}`;
+    const { error } = await supabase.storage
+      .from("book-covers")
+      .upload(path, file, { cacheControl: "31536000", upsert: false, contentType: file.type });
+    setUploading(false);
+    if (error) { toast.error(error.message); return; }
+    setForm((f) => ({ ...f, cover_url: `/api/public/book-cover/${path}` }));
+    toast.success("Cover uploaded");
+  }
 
   const set = (k: keyof typeof EMPTY_BOOK, v: string | boolean) =>
     setForm((f) => ({ ...f, [k]: v }));
