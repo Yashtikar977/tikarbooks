@@ -21,6 +21,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as BooksIndexRouteImport } from './routes/books.index'
 import { Route as BooksSlugRouteImport } from './routes/books.$slug'
+import { Route as ApiPublicBookCoverSplatRouteImport } from './routes/api/public/book-cover.$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -82,6 +83,11 @@ const BooksSlugRoute = BooksSlugRouteImport.update({
   path: '/books/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicBookCoverSplatRoute = ApiPublicBookCoverSplatRouteImport.update({
+  id: '/api/public/book-cover/$',
+  path: '/api/public/book-cover/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -96,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/wishlist': typeof WishlistRoute
   '/books/$slug': typeof BooksSlugRoute
   '/books/': typeof BooksIndexRoute
+  '/api/public/book-cover/$': typeof ApiPublicBookCoverSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -110,6 +117,7 @@ export interface FileRoutesByTo {
   '/wishlist': typeof WishlistRoute
   '/books/$slug': typeof BooksSlugRoute
   '/books': typeof BooksIndexRoute
+  '/api/public/book-cover/$': typeof ApiPublicBookCoverSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -125,6 +133,7 @@ export interface FileRoutesById {
   '/wishlist': typeof WishlistRoute
   '/books/$slug': typeof BooksSlugRoute
   '/books/': typeof BooksIndexRoute
+  '/api/public/book-cover/$': typeof ApiPublicBookCoverSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -141,6 +150,7 @@ export interface FileRouteTypes {
     | '/wishlist'
     | '/books/$slug'
     | '/books/'
+    | '/api/public/book-cover/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -155,6 +165,7 @@ export interface FileRouteTypes {
     | '/wishlist'
     | '/books/$slug'
     | '/books'
+    | '/api/public/book-cover/$'
   id:
     | '__root__'
     | '/'
@@ -169,6 +180,7 @@ export interface FileRouteTypes {
     | '/wishlist'
     | '/books/$slug'
     | '/books/'
+    | '/api/public/book-cover/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -184,6 +196,7 @@ export interface RootRouteChildren {
   WishlistRoute: typeof WishlistRoute
   BooksSlugRoute: typeof BooksSlugRoute
   BooksIndexRoute: typeof BooksIndexRoute
+  ApiPublicBookCoverSplatRoute: typeof ApiPublicBookCoverSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -272,6 +285,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BooksSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/book-cover/$': {
+      id: '/api/public/book-cover/$'
+      path: '/api/public/book-cover/$'
+      fullPath: '/api/public/book-cover/$'
+      preLoaderRoute: typeof ApiPublicBookCoverSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -288,6 +308,7 @@ const rootRouteChildren: RootRouteChildren = {
   WishlistRoute: WishlistRoute,
   BooksSlugRoute: BooksSlugRoute,
   BooksIndexRoute: BooksIndexRoute,
+  ApiPublicBookCoverSplatRoute: ApiPublicBookCoverSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
