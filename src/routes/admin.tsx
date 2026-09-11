@@ -269,7 +269,47 @@ function BooksAdmin() {
           <Input type="number" placeholder="Disc %" value={form.discount_percent} onChange={(e) => set("discount_percent", e.target.value)} />
           <Input type="number" placeholder="Stock" value={form.stock} onChange={(e) => set("stock", e.target.value)} />
         </div>
-        <Input placeholder="Cover image URL (optional)" value={form.cover_url} onChange={(e) => set("cover_url", e.target.value)} />
+        <div className="space-y-2">
+          <label className="text-sm font-medium" htmlFor="cover-file">Book cover photo</label>
+          <div className="flex items-start gap-3">
+            <div className="h-24 w-16 shrink-0 overflow-hidden rounded border bg-muted">
+              {form.cover_url ? (
+                <img src={form.cover_url} alt="Cover preview" className="h-full w-full object-cover" />
+              ) : (
+                <span className="flex h-full w-full items-center justify-center text-[10px] text-muted-foreground">
+                  No image
+                </span>
+              )}
+            </div>
+            <div className="flex-1 space-y-2">
+              <input
+                id="cover-file"
+                type="file"
+                accept="image/*"
+                className="block w-full text-sm"
+                disabled={uploading}
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  e.target.value = "";
+                  if (file) void uploadCover(file);
+                }}
+              />
+              <p className="text-xs text-muted-foreground">
+                {uploading ? "Uploading…" : "JPG or PNG, up to 10 MB. Shown on shelves, catalogue and book pages."}
+              </p>
+              <Input
+                placeholder="Or paste an image URL"
+                value={form.cover_url}
+                onChange={(e) => set("cover_url", e.target.value)}
+              />
+              {form.cover_url && (
+                <Button type="button" size="sm" variant="ghost" onClick={() => set("cover_url", "")}>
+                  Remove image
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>
         <div className="flex items-center gap-2">
           <label className="text-sm" htmlFor="cc">Spine colour</label>
           <input id="cc" type="color" value={form.cover_color} onChange={(e) => set("cover_color", e.target.value)} />
