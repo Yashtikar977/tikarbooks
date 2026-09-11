@@ -8,13 +8,15 @@ import { Input } from "@/components/ui/input";
 import { booksQuery, categoriesQuery } from "@/lib/queries";
 import { finalPrice } from "@/lib/format";
 
-type Search = { q?: string; category?: string };
+type Search = { q?: string | undefined; category?: string | undefined };
 
 export const Route = createFileRoute("/books/")({
   validateSearch: (search: Record<string, unknown>): Search => ({
-    q: typeof search.q === "string" && search.q ? search.q : undefined,
+    q: typeof search["q"] === "string" && search["q"] ? (search["q"] as string) : undefined,
     category:
-      typeof search.category === "string" && search.category ? search.category : undefined,
+      typeof search["category"] === "string" && search["category"]
+        ? (search["category"] as string)
+        : undefined,
   }),
   head: () => ({
     meta: [
