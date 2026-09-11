@@ -285,8 +285,10 @@ function BooksAdmin() {
           <Input type="number" placeholder="Disc %" value={form.discount_percent} onChange={(e) => set("discount_percent", e.target.value)} />
           <Input type="number" placeholder="Stock" value={form.stock} onChange={(e) => set("stock", e.target.value)} />
         </div>
-        <div className="space-y-2">
-          <label className="text-sm font-medium" htmlFor="cover-file">Book cover photo</label>
+        <div className="space-y-2 rounded-md border p-3">
+          <label className="text-sm font-medium" htmlFor="cover-file">
+            Cover photo
+          </label>
           <div className="flex items-start gap-3">
             <div className="h-24 w-16 shrink-0 overflow-hidden rounded border bg-muted">
               {form.cover_url ? (
@@ -311,16 +313,11 @@ function BooksAdmin() {
                 }}
               />
               <p className="text-xs text-muted-foreground">
-                {uploading ? "Uploading…" : "JPG or PNG, up to 10 MB. Shown on shelves, catalogue and book pages."}
+                {uploading ? "Uploading cover…" : "Choose a JPG or PNG up to 10 MB."}
               </p>
-              <Input
-                placeholder="Or paste an image URL"
-                value={form.cover_url}
-                onChange={(e) => set("cover_url", e.target.value)}
-              />
               {form.cover_url && (
                 <Button type="button" size="sm" variant="ghost" onClick={() => set("cover_url", "")}>
-                  Remove image
+                  Remove cover
                 </Button>
               )}
             </div>
