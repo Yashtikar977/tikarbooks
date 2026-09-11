@@ -223,7 +223,7 @@ function BooksAdmin() {
     const { error } = editingId
       ? await supabase.from("books").update(payload).eq("id", editingId)
       : await supabase.from("books").insert(payload);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success(editingId ? "Book updated" : "Book added");
     setEditingId(null);
     setForm({ ...EMPTY_BOOK });
@@ -232,7 +232,7 @@ function BooksAdmin() {
 
   async function remove(id: string) {
     const { error } = await supabase.from("books").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Book deleted");
     void qc.invalidateQueries({ queryKey: ["books"] });
   }
@@ -336,7 +336,7 @@ function CategoriesAdmin() {
     e.preventDefault();
     const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
     const { error } = await supabase.from("categories").insert({ name, slug });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setName("");
     toast.success("Category added");
     void qc.invalidateQueries({ queryKey: ["categories"] });
@@ -346,13 +346,13 @@ function CategoriesAdmin() {
     const next = window.prompt("New category name", current);
     if (!next) return;
     const { error } = await supabase.from("categories").update({ name: next }).eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     void qc.invalidateQueries({ queryKey: ["categories"] });
   }
 
   async function remove(id: string) {
     const { error } = await supabase.from("categories").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     void qc.invalidateQueries({ queryKey: ["categories"] });
   }
 
@@ -393,7 +393,7 @@ function OrdersAdmin() {
 
   async function setStatus(id: string, status: OrderStatus) {
     const { error } = await supabase.from("orders").update({ status }).eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Order updated");
     void qc.invalidateQueries({ queryKey: ["admin-orders"] });
   }
@@ -451,13 +451,13 @@ function ReviewsAdmin() {
 
   async function approve(id: string, is_approved: boolean) {
     const { error } = await supabase.from("reviews").update({ is_approved }).eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     void qc.invalidateQueries({ queryKey: ["admin-reviews"] });
   }
 
   async function remove(id: string) {
     const { error } = await supabase.from("reviews").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     void qc.invalidateQueries({ queryKey: ["admin-reviews"] });
   }
 
