@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CategoriesRouteImport } from './routes/categories'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as BooksIndexRouteImport } from './routes/books.index'
 import { Route as BooksSlugRouteImport } from './routes/books.$slug'
 
@@ -42,6 +43,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WishlistRoute = WishlistRouteImport.update({
+  id: '/wishlist',
+  path: '/wishlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BooksIndexRoute = BooksIndexRouteImport.update({
   id: '/books/',
   path: '/books/',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/cart': typeof CartRoute
   '/categories': typeof CategoriesRoute
   '/contact': typeof ContactRoute
+  '/wishlist': typeof WishlistRoute
   '/books/$slug': typeof BooksSlugRoute
   '/books/': typeof BooksIndexRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/cart': typeof CartRoute
   '/categories': typeof CategoriesRoute
   '/contact': typeof ContactRoute
+  '/wishlist': typeof WishlistRoute
   '/books/$slug': typeof BooksSlugRoute
   '/books': typeof BooksIndexRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/cart': typeof CartRoute
   '/categories': typeof CategoriesRoute
   '/contact': typeof ContactRoute
+  '/wishlist': typeof WishlistRoute
   '/books/$slug': typeof BooksSlugRoute
   '/books/': typeof BooksIndexRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/categories'
     | '/contact'
+    | '/wishlist'
     | '/books/$slug'
     | '/books/'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/categories'
     | '/contact'
+    | '/wishlist'
     | '/books/$slug'
     | '/books'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/categories'
     | '/contact'
+    | '/wishlist'
     | '/books/$slug'
     | '/books/'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   CartRoute: typeof CartRoute
   CategoriesRoute: typeof CategoriesRoute
   ContactRoute: typeof ContactRoute
+  WishlistRoute: typeof WishlistRoute
   BooksSlugRoute: typeof BooksSlugRoute
   BooksIndexRoute: typeof BooksIndexRoute
 }
@@ -158,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/wishlist': {
+      id: '/wishlist'
+      path: '/wishlist'
+      fullPath: '/wishlist'
+      preLoaderRoute: typeof WishlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/books/': {
       id: '/books/'
       path: '/books'
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   CartRoute: CartRoute,
   CategoriesRoute: CategoriesRoute,
   ContactRoute: ContactRoute,
+  WishlistRoute: WishlistRoute,
   BooksSlugRoute: BooksSlugRoute,
   BooksIndexRoute: BooksIndexRoute,
 }
