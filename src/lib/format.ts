@@ -1,14 +1,11 @@
 export const STORE = {
   name: "Tikar Books Emporium",
   city: "Buldhana",
-  address: "Main Road, Buldhana, Maharashtra 443001, India",
-  phone: "+91 90000 00000",
-  whatsapp: "919000000000",
+  address: "Club Layout, Behind SBI Bank, Buldhana, Maharashtra 443001, India",
+  phone: "+91 96894 80032",
+  whatsapp: "919689480032",
   email: "hello@tikarbooks.in",
-  hours: [
-    { days: "Monday – Saturday", time: "9:30 AM – 9:00 PM" },
-    { days: "Sunday", time: "10:00 AM – 2:00 PM" },
-  ],
+  hours: [{ days: "Monday – Sunday", time: "10:00 AM – 8:00 PM" }],
 };
 
 export function inr(value: number): string {

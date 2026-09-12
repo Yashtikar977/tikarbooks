@@ -34,7 +34,7 @@ export const Route = createFileRoute("/")({
           name: STORE.name,
           address: {
             "@type": "PostalAddress",
-            streetAddress: "Main Road",
+            streetAddress: "Club Layout, Behind SBI Bank",
             addressLocality: "Buldhana",
             addressRegion: "Maharashtra",
             postalCode: "443001",
@@ -42,7 +42,7 @@ export const Route = createFileRoute("/")({
           },
           telephone: STORE.phone,
           email: STORE.email,
-          openingHours: ["Mo-Sa 09:30-21:00", "Su 10:00-14:00"],
+          openingHours: ["Mo-Su 10:00-20:00"],
         }),
       },
     ],
