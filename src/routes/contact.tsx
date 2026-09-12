@@ -94,7 +94,7 @@ function Contact() {
           <div className="overflow-hidden rounded-xl border border-border">
             <iframe
               title="Map to Tikar Books Emporium, Buldhana"
-              src="https://www.google.com/maps?q=Buldhana,Maharashtra,India&output=embed"
+              src="https://www.google.com/maps?q=${encodeURIComponent(STORE.address)}&output=embed"
               className="h-72 w-full"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
