@@ -132,26 +132,14 @@ function Home() {
 
           {/* Hero shelf visual */}
           <div className="shelf-stage relative hidden lg:block">
-            <div
-              className="absolute inset-0 rounded-2xl"
-              style={{ background: "oklch(0.2 0.03 42 / 0.5)" }}
-              aria-hidden
+            <img
+              src={heroImg}
+              alt="Inside Tikar Books Emporium — warm wooden bookshelves filled with books"
+              width={1024}
+              height={1024}
+              className="relative h-full w-full rounded-2xl object-cover"
+              style={{ boxShadow: "var(--shadow-lift)" }}
             />
-            <div className="relative flex h-full items-end justify-center gap-2 p-8">
-              {books.slice(0, 9).map((b, i) => (
-                <div
-                  key={b.id}
-                  className="book-3d w-9 rounded-sm"
-                  style={{
-                    height: `${140 + ((i * 37) % 90)}px`,
-                    backgroundColor: b.cover_color,
-                    transform: `rotateY(${18 - i * 2}deg) rotateZ(${((i % 4) - 1.5) * 2}deg)`,
-                    boxShadow: "var(--shadow-lift)",
-                  }}
-                  aria-hidden
-                />
-              ))}
-            </div>
           </div>
         </div>
       </section>
