@@ -85,7 +85,7 @@ export function Footer() {
         </address>
       </div>
       <div className="border-t border-border py-4 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} {STORE.name}, {STORE.city}, Maharashtra. All rights reserved.
+        © {new Date().getFullYear()} {STORE.name}, {STORE.city}, Maharashtra. Owned by {STORE.owner}. All rights reserved.
       </div>
     </footer>
   );
