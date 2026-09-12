@@ -27,8 +27,9 @@ function About() {
     <div className="mx-auto max-w-4xl px-4 py-14">
       <h1 className="text-display text-4xl">About {STORE.name}</h1>
       <p className="mt-4 text-lg text-muted-foreground">
-        We are a neighbourhood bookstore in {STORE.city}, Maharashtra, supplying books to students,
-        teachers, exam aspirants, professionals and readers of every age.
+        {STORE.name} is a family-run bookstore owned by {STORE.owner}, located in {STORE.city},
+        Maharashtra. We supply books to students, teachers, exam aspirants, professionals and readers
+        of every age.
       </p>
 
       <div className="mt-10 grid gap-6 sm:grid-cols-2">

@@ -1,10 +1,11 @@
 export const STORE = {
   name: "Tikar Books Emporium",
+  owner: "Vinayak Vishnu Tikar",
   city: "Buldhana",
   address: "Club Layout, Behind SBI Bank, Buldhana, Maharashtra 443001, India",
   phone: "+91 96894 80032",
   whatsapp: "919689480032",
-  email: "hello@tikarbooks.in",
+  email: "tikarbooksemporium@gmail.com",
   hours: [{ days: "Monday – Sunday", time: "10:00 AM – 8:00 PM" }],
 };
 
