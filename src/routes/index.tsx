@@ -8,6 +8,7 @@ import { AiAssistant } from "@/components/site/AiAssistant";
 import { booksQuery, categoriesQuery } from "@/lib/queries";
 import { STORE, whatsappLink } from "@/lib/format";
 import type { Book } from "@/lib/types";
+import heroImg from "@/assets/hero-bookstore.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
