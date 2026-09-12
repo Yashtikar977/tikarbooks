@@ -189,7 +189,11 @@ function Home() {
         ) : (
           <div className="space-y-14">
             {categories.map((cat) => (
-              <Shelf key={cat.id} category={cat} books={books.filter((b) => b.category_id === cat.id)} />
+              <Shelf
+                key={cat.id}
+                category={cat}
+                books={books.filter((b) => b.category_id === cat.id && b.cover_url)}
+              />
             ))}
           </div>
         )}
